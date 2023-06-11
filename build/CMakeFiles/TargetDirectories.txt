@@ -1,0 +1,4 @@
+/home/piotr/Desktop/Cpp_projects/ImageAlgorithms/build/CMakeFiles/imageLib.dir
+/home/piotr/Desktop/Cpp_projects/ImageAlgorithms/build/CMakeFiles/ImageAlgorithms.dir
+/home/piotr/Desktop/Cpp_projects/ImageAlgorithms/build/CMakeFiles/edit_cache.dir
+/home/piotr/Desktop/Cpp_projects/ImageAlgorithms/build/CMakeFiles/rebuild_cache.dir
