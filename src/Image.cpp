@@ -12,7 +12,7 @@ Image::Image(const char * filename) {
     }
 }
 
-Image::Image(std::uint8_t * data, int width, int height, int channels) : width_{width}, height_{height}, channels_{channels} {
+Image::Image(std::uint8_t * data, int height, int width, int channels) : height_{height}, width_{width}, channels_{channels} {
     if (data) {
         memcpy(data_, data, width_*height_*channels_);
     }
@@ -107,4 +107,33 @@ ImageType Image::getFileType(const char* filename) {
 		}
 	}
 	return ImageType::PNG;
+}
+
+void Image::another_resize_algorithm(Image& image, std::uint8_t *picture, int height, int width) {
+    auto newWidth = 1000;
+    auto newHeight = 1000;
+    // Get a new buuffer to interpolate into
+    std::uint8_t* new_pic = new std::uint8_t[newWidth * newHeight * 3];
+
+    double scaleWidth =  (double)newWidth / (double)width;
+    double scaleHeight = (double)newHeight / (double)height;
+
+    for(int cy = 0; cy < newHeight; cy++)
+    {
+        for(int cx = 0; cx < newWidth; cx++)
+        {
+            int pixel = (cy * (newWidth *3)) + (cx*3);
+            int nearestMatch =  (((int)(cy / scaleHeight) * (width *3)) + ((int)(cx / scaleWidth) *3) );
+            
+            new_pic[pixel    ] =  picture[nearestMatch    ];
+            new_pic[pixel + 1] =  picture[nearestMatch + 1];
+            new_pic[pixel + 2] =  picture[nearestMatch + 2];
+        }
+    }
+	image.width_ = newWidth;
+	image.height_ = newHeight;
+	if (image.data_)
+        stbi_image_free(image.data_);
+	image.data_ = new_pic;
+    new_pic = nullptr;
 }
