@@ -1,2 +1,0 @@
-/usr/bin/ar qc libimageLib.a CMakeFiles/imageLib.dir/src/image_algorithms.cpp.o CMakeFiles/imageLib.dir/src/Image.cpp.o
-/usr/bin/ranlib libimageLib.a
